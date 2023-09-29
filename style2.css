@@ -1,0 +1,218 @@
+:root {
+    --variable-collection-background-color: rgba(243, 243, 243, 1);
+}
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: "Inter-Bold", Helvetica;
+    overflow: hidden;
+}
+
+
+body.signup-page {
+    display: flex;
+    flex-direction: column;
+    height: 1418px;
+    align-items: center;
+    gap: 10px;
+    padding: 0px 10px;
+    position: relative;
+    background-color: var(--variable-collection-background-color);
+}
+
+.header {
+    display: flex;
+    width: 100%;
+    height: 10%;
+    vertical-align: top;
+    gap: 10px;
+    padding: 0 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #ffffff;
+    box-shadow: 2px 2px 10px #00000040;
+    z-index: 1000;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.header-image {
+    display: flex;
+    width: 90%;
+    height: 90%;
+}
+
+.cardsdiv {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    align-items: flex-start;
+    gap: 5px 5px;
+    padding: 20px 0px;
+    position: relative;
+    margin-left: -1px;
+    margin-right: -1px;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    height: calc(100vh - 10% - 3.5%); /* Adjust this value based on the height of your header and any additional spacing you require */
+    align-items: center;
+    gap: 20px;
+    padding: 20px 0px;
+    position: relative;
+    margin-top: 4.5%;
+}
+
+.blank-card-left {
+    position: relative;
+    flex-grow: 1;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 8px 8px 30px #00000040;
+}
+
+.right {
+    display: flex;
+    flex-wrap: wrap;
+    width: 39%;
+    height: calc(100vh - 10% - 3.5%);
+    overflow-y: auto;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px 20px;
+    padding: 20px 0px;
+    position: relative;
+    overflow-x: hidden;
+    margin-top: 4.5%;
+}
+
+.blank-card-right {
+    width: 80%;
+    height: 222px;
+    position: relative;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 8px 8px 30px #00000040;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    height: 60px;
+    background-color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+}
+
+.footer-text {
+    padding-right: 20px;
+    /* adjust for desired space from the right edge */
+    color: #fff;
+}
+
+/* Tick mark styles */
+.tick-mark {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: none;
+    /* Initially hidden */
+    color: green;
+    font-size: 24px;
+    /* Adjust size as needed */
+    z-index: 10;
+    /* To ensure it appears on top of other elements */
+}
+
+/* Selected state styles */
+.selected .tick-mark {
+    display: block;
+    /* Show the tick mark */
+}
+
+.selected {
+    box-shadow: 0 0 20px 5px limegreen;
+    /* Green glow around the card */
+}
+
+.top-left-text {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-family: "Inter-Bold", Helvetica;
+    font-weight: bold;
+    font-size: 16px;
+    /* Adjust as needed */
+}
+
+.center-image img {
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    /* Adjust as needed */
+    height: auto;
+}
+
+.bottom-right-text {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-family: "Inter-Bold", Helvetica;
+    font-weight: 600;
+    /* semi-bold */
+    font-size: 16px;
+    /* Adjust as needed */
+}
+
+.blank-card-left,
+.blank-card-right {
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.blank-card-left:hover,
+.blank-card-right:hover {
+    transform: scale(1.03);
+}
+
+
+.quantity-control {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.quantity-control .decrease,
+.quantity-control .increase {
+    cursor: pointer;
+    padding: 5px 10px;
+    font-size: 16px;
+    user-select: none;
+}
+
+.quantity-control .quantity {
+    padding: 5px 10px;
+    font-size: 16px;
+}
