@@ -1,3 +1,5 @@
+let prevTotalAmount = 0;
+
 document.addEventListener("DOMContentLoaded", function () {
   const cards = document.querySelectorAll(
     ".blank-card-left, .blank-card-right"
@@ -7,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   cards.forEach((card) => {
     card.addEventListener("click", function (event) {
-      // Check if we clicked on the - or + inside quantity-control
+      // Checking if clicked on the - or + inside class:quantity-control
       if (
         event.target.classList.contains("decrease") ||
         event.target.classList.contains("increase")
@@ -22,7 +24,6 @@ document.addEventListener("DOMContentLoaded", function () {
         } else if (event.target.classList.contains("increase")) {
           quantity++;
         }
-
         quantityEl.textContent = quantity;
       } else {
         // Toggle the selected class
@@ -38,8 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
           }
         }
       }
-
-      // Update the footer
+      // Update the footer each time change
       updateFooter();
     });
   });
@@ -50,21 +50,36 @@ document.addEventListener("DOMContentLoaded", function () {
     let totalAmount = 0;
 
     selectedCards.forEach((card) => {
-      // Get the amount and quantity
-      let amount = parseFloat(card.getAttribute("data-amount"));
-      let quantity = 1; // Default quantity
-
-      // Check if there's a quantity control in the card
-      const quantityControl = card.querySelector(".quantity-control .quantity");
-      if (quantityControl) {
-        quantity = parseInt(quantityControl.textContent, 10);
-      }
-
-      totalAmount += amount * quantity; // Multiply amount by quantity
+      let quantity = card.querySelector(".quantity-control")
+        ? parseInt(
+            card.querySelector(".quantity-control .quantity").textContent
+          )
+        : 1;
+      totalAmount += parseFloat(card.getAttribute("data-amount")) * quantity;
     });
+
+    // Calculate the change in amount
+    const changeAmount = totalAmount - prevTotalAmount;
+    prevTotalAmount = totalAmount;
 
     selectedCountEl.textContent = totalCount;
     totalAmountEl.textContent = totalAmount.toFixed(2);
+
+    // Ghost Amount Display Logic
+    const ghostAmountEl = document.getElementById("ghostAmount");
+    ghostAmountEl.textContent = `${
+      changeAmount >= 0 ? "+" : ""
+    }${changeAmount.toFixed(2)}`;
+    ghostAmountEl.style.color = changeAmount >= 0 ? "green" : "red";
+    ghostAmountEl.style.position = "absolute";
+    ghostAmountEl.style.bottom = changeAmount < 0 ? "0" : "auto";
+    ghostAmountEl.style.top = changeAmount >= 0 ? "0" : "auto";
+
+    ghostAmountEl.classList.add("show");
+
+    setTimeout(() => {
+      ghostAmountEl.classList.remove("show");
+    }, 800); // timer for ghost
   }
 
   // Initial update

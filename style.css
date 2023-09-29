@@ -216,3 +216,13 @@ body.signup-page {
     padding: 5px 10px;
     font-size: 16px;
 }
+
+.ghost-amount {
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+    font-size: 18px;
+}
+
+.ghost-amount.show {
+    opacity: 1;
+}
