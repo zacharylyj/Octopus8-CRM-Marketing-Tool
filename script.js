@@ -1,104 +1,162 @@
-let prevTotalAmount = 0;
-let months_divided = 36;
+const config = {
+  "Add User Account": {
+    "grant-amount": 0,
+    "grant-text": "",
+    "image-link": "",
+    "price-amount": 10,
+    "price-amount-text": "$10",
+    "quantity-display": "True",
+  },
+  "Zoho Analytics(Base)": {
+    "grant-amount": 8000,
+    "grant-text": "$8000",
+    "image-link": "",
+    "price-amount": 0,
+    "price-amount-text": "",
+    "quantity-display": "False",
+  },
+  "Zoho Analytics(Add Graph)": {
+    "grant-amount": 0,
+    "grant-text": "",
+    "image-link": "",
+    "price-amount": 10,
+    "price-amount-text": "",
+    "quantity-display": "True",
+  },
+  "Don API": {
+    "grant-amount": 11000,
+    "grant-text": "$11000",
+    "image-link": "",
+    "price-amount": 10,
+    "price-amount-text": "",
+    "quantity-display": "False",
+  },
+  "SingPass(Login)": {
+    "grant-amount": 7000,
+    "grant-text": "$7000",
+    "image-link": "",
+    "price-amount": 10,
+    "price-amount-text": "",
+    "quantity-display": "False",
+  },
+  "SingPass(my info)": {
+    "grant-amount": 7000,
+    "grant-text": "$7000",
+    "image-link": "",
+    "price-amount": 10,
+    "price-amount-text": "",
+    "quantity-display": "False",
+  },
+  NinjaForm: {
+    "grant-amount": 8000,
+    "grant-text": "$8000",
+    "image-link": "",
+    "price-amount": 10,
+    "price-amount-text": "",
+    "quantity-display": "False",
+  },
+  SMS: {
+    "grant-amount": 0,
+    "grant-text": "",
+    "image-link": "",
+    "price-amount": 4800,
+    "price-amount-text": "$4800",
+    "quantity-display": "False",
+  },
+};
 
-document.getElementById("monthsDivided").textContent = months_divided;
+//////////////////////////////////////////////////////////////////////////////////////////////
+window.addEventListener("DOMContentLoaded", function () {
+  const container = document.querySelector(".right");
 
-document.addEventListener("DOMContentLoaded", function () {
-  fetch("config.json")
-    .then((response) => response.json())
-    .then((data) => {
-      const rightDiv = document.querySelector(".right");
-      let cardIdCounter = 1;
+  let cardIdCounter = 1;
 
-      // Loop through each item in the json data
-      for (let key in data) {
-        const item = data[key];
+  for (const key in config) {
+    const cardData = config[key];
 
-        // Create the main card div
-        const cardDiv = document.createElement("div");
-        cardDiv.classList.add(
-          item["grant-amount"] == 0
-            ? "blank-card-right-nogrant"
-            : "blank-card-right"
-        );
-        cardDiv.setAttribute("data-card-id", "right" + cardIdCounter);
-        cardDiv.setAttribute("data-amount", item["price-amount"]);
-        cardDiv.setAttribute("grant-amount", item["grant-amount"]);
+    const card = document.createElement("div");
+    card.classList.add(
+      cardData["grant-amount"] == 0
+        ? "blank-card-right-nogrant"
+        : "blank-card-right"
+    );
+    card.setAttribute("data-card-id", "right" + cardIdCounter);
+    card.setAttribute("data-amount", cardData["price-amount"]);
+    card.setAttribute("grant-amount", cardData["grant-amount"]);
 
-        // Create and append tick mark div
-        const tickMarkDiv = document.createElement("div");
-        tickMarkDiv.classList.add("tick-mark");
-        tickMarkDiv.textContent = "✔";
-        cardDiv.appendChild(tickMarkDiv);
+    // Add tick mark
+    const tickMark = document.createElement("div");
+    tickMark.classList.add("tick-mark");
+    tickMark.textContent = "✔";
+    card.appendChild(tickMark);
 
-        // Create and append top-left-text div
-        const topLeftTextDiv = document.createElement("div");
-        topLeftTextDiv.classList.add("top-left-text");
-        topLeftTextDiv.textContent = key;
-        cardDiv.appendChild(topLeftTextDiv);
+    // Add top-left-text
+    const topLeftText = document.createElement("div");
+    topLeftText.classList.add("top-left-text");
+    topLeftText.textContent = key;
+    card.appendChild(topLeftText);
 
-        // Create and append top-right-text div, if necessary
-        if (item["grant-text"] !== "") {
-          const topRightTextDiv = document.createElement("div");
-          topRightTextDiv.classList.add("top-right-text");
-          topRightTextDiv.textContent = item["grant-text"];
-          cardDiv.appendChild(topRightTextDiv);
-        }
+    // Add top-right-text if grant-text is not empty
+    if (cardData["grant-text"]) {
+      const topRightText = document.createElement("div");
+      topRightText.classList.add("top-right-text");
+      topRightText.textContent = cardData["grant-text"];
+      card.appendChild(topRightText);
+    }
 
-        // Create and append center-image div
-        const centerImageDiv = document.createElement("div");
-        centerImageDiv.classList.add("center-image");
-        const img = document.createElement("img");
-        img.src = item["image-link"];
-        img.alt = "Center Image";
-        centerImageDiv.appendChild(img);
-        cardDiv.appendChild(centerImageDiv);
+    // Add center-image
+    const centerImage = document.createElement("div");
+    centerImage.classList.add("center-image");
+    const img = document.createElement("img");
+    img.setAttribute("src", cardData["image-link"]);
+    img.setAttribute("alt", "Center Image");
+    centerImage.appendChild(img);
+    card.appendChild(centerImage);
 
-        // Create and append bottom-right-text div
-        const bottomRightTextDiv = document.createElement("div");
-        bottomRightTextDiv.classList.add("bottom-right-text");
-        bottomRightTextDiv.textContent = item["price-amount-text"];
-        cardDiv.appendChild(bottomRightTextDiv);
+    // Add bottom-right-text
+    const bottomRightText = document.createElement("div");
+    bottomRightText.classList.add("bottom-right-text");
+    bottomRightText.textContent = cardData["price-amount-text"];
+    card.appendChild(bottomRightText);
 
-        // Create and append quantity-control div, if necessary
-        if (item["quantity-display"] === "True") {
-          const quantityControlDiv = document.createElement("div");
-          quantityControlDiv.classList.add("quantity-control");
-          const decreaseSpan = document.createElement("span");
-          decreaseSpan.classList.add("decrease");
-          decreaseSpan.textContent = "-";
-          const quantitySpan = document.createElement("span");
-          quantitySpan.classList.add("quantity");
-          quantitySpan.textContent = "1";
-          const increaseSpan = document.createElement("span");
-          increaseSpan.classList.add("increase");
-          increaseSpan.textContent = "+";
+    // Add quantity-control if quantity-display is "True"
+    if (cardData["quantity-display"] === "True") {
+      const quantityControl = document.createElement("div");
+      quantityControl.classList.add("quantity-control");
 
-          quantityControlDiv.appendChild(decreaseSpan);
-          quantityControlDiv.appendChild(quantitySpan);
-          quantityControlDiv.appendChild(increaseSpan);
-          cardDiv.appendChild(quantityControlDiv);
-        }
+      const decrease = document.createElement("span");
+      decrease.classList.add("decrease");
+      decrease.textContent = "-";
+      quantityControl.appendChild(decrease);
 
-        // Append the main card div to the right div
-        rightDiv.appendChild(cardDiv);
-        cardIdCounter++;
-      }
-    })
-    .catch((error) => {
-      console.error(
-        "There was an error fetching or processing the config.json:",
-        error
-      );
-    });
+      const quantity = document.createElement("span");
+      quantity.classList.add("quantity");
+      quantity.textContent = "1";
+      quantityControl.appendChild(quantity);
+
+      const increase = document.createElement("span");
+      increase.classList.add("increase");
+      increase.textContent = "+";
+      quantityControl.appendChild(increase);
+
+      card.appendChild(quantityControl);
+    }
+
+    container.appendChild(card);
+    cardIdCounter++;
+  }
+
+  let prevTotalAmount = 0;
+  const months_divided = 36;
+
+  document.getElementById("monthsDivided").textContent = months_divided;
+
   const cards = document.querySelectorAll(
     ".blank-card-left, .blank-card-right, .blank-card-left-large, .blank-card-left-nogrant, .blank-card-right-nogrant"
   );
-  const selectedCountEl = document.getElementById("selectedCount");
-  const totalAmountEl = document.getElementById("totalAmount");
-
   cards.forEach((card) => {
     card.addEventListener("click", function (event) {
+      console.log("Card clicked!"); //debug
       if (
         event.target.classList.contains("decrease") ||
         event.target.classList.contains("increase")
