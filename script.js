@@ -4,6 +4,93 @@ let months_divided = 36;
 document.getElementById("monthsDivided").textContent = months_divided;
 
 document.addEventListener("DOMContentLoaded", function () {
+  fetch("config.json")
+    .then((response) => response.json())
+    .then((data) => {
+      const rightDiv = document.querySelector(".right");
+      let cardIdCounter = 1;
+
+      // Loop through each item in the json data
+      for (let key in data) {
+        const item = data[key];
+
+        // Create the main card div
+        const cardDiv = document.createElement("div");
+        cardDiv.classList.add(
+          item["grant-amount"] == 0
+            ? "blank-card-right-nogrant"
+            : "blank-card-right"
+        );
+        cardDiv.setAttribute("data-card-id", "right" + cardIdCounter);
+        cardDiv.setAttribute("data-amount", item["price-amount"]);
+        cardDiv.setAttribute("grant-amount", item["grant-amount"]);
+
+        // Create and append tick mark div
+        const tickMarkDiv = document.createElement("div");
+        tickMarkDiv.classList.add("tick-mark");
+        tickMarkDiv.textContent = "✔";
+        cardDiv.appendChild(tickMarkDiv);
+
+        // Create and append top-left-text div
+        const topLeftTextDiv = document.createElement("div");
+        topLeftTextDiv.classList.add("top-left-text");
+        topLeftTextDiv.textContent = key;
+        cardDiv.appendChild(topLeftTextDiv);
+
+        // Create and append top-right-text div, if necessary
+        if (item["grant-text"] !== "") {
+          const topRightTextDiv = document.createElement("div");
+          topRightTextDiv.classList.add("top-right-text");
+          topRightTextDiv.textContent = item["grant-text"];
+          cardDiv.appendChild(topRightTextDiv);
+        }
+
+        // Create and append center-image div
+        const centerImageDiv = document.createElement("div");
+        centerImageDiv.classList.add("center-image");
+        const img = document.createElement("img");
+        img.src = item["image-link"];
+        img.alt = "Center Image";
+        centerImageDiv.appendChild(img);
+        cardDiv.appendChild(centerImageDiv);
+
+        // Create and append bottom-right-text div
+        const bottomRightTextDiv = document.createElement("div");
+        bottomRightTextDiv.classList.add("bottom-right-text");
+        bottomRightTextDiv.textContent = item["price-amount-text"];
+        cardDiv.appendChild(bottomRightTextDiv);
+
+        // Create and append quantity-control div, if necessary
+        if (item["quantity-display"] === "True") {
+          const quantityControlDiv = document.createElement("div");
+          quantityControlDiv.classList.add("quantity-control");
+          const decreaseSpan = document.createElement("span");
+          decreaseSpan.classList.add("decrease");
+          decreaseSpan.textContent = "-";
+          const quantitySpan = document.createElement("span");
+          quantitySpan.classList.add("quantity");
+          quantitySpan.textContent = "1";
+          const increaseSpan = document.createElement("span");
+          increaseSpan.classList.add("increase");
+          increaseSpan.textContent = "+";
+
+          quantityControlDiv.appendChild(decreaseSpan);
+          quantityControlDiv.appendChild(quantitySpan);
+          quantityControlDiv.appendChild(increaseSpan);
+          cardDiv.appendChild(quantityControlDiv);
+        }
+
+        // Append the main card div to the right div
+        rightDiv.appendChild(cardDiv);
+        cardIdCounter++;
+      }
+    })
+    .catch((error) => {
+      console.error(
+        "There was an error fetching or processing the config.json:",
+        error
+      );
+    });
   const cards = document.querySelectorAll(
     ".blank-card-left, .blank-card-right, .blank-card-left-large, .blank-card-left-nogrant, .blank-card-right-nogrant"
   );
@@ -96,7 +183,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // Update the DOM elements with new calculated values
     document.getElementById("selectedCount").textContent = totalCount;
     document.getElementById("totalAmount").textContent = (
-      totalAmount / months_divided
+      (totalAmount - totalGrantAmount) /
+      months_divided
     ).toFixed(2);
     document.getElementById("totalGrantAmount").textContent =
       totalGrantAmount.toFixed(2);
