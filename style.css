@@ -71,6 +71,14 @@ body.signup-page {
     margin-top: 4.5%;
 }
 
+.blank-card-left-large {
+    position: relative;
+    flex-grow: 2;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 8px 8px 30px #00000040;
+}
 .blank-card-left {
     position: relative;
     flex-grow: 1;
@@ -125,18 +133,21 @@ body.signup-page {
     color: #fff;
 }
 
-/* Tick mark styles */
 .tick-mark {
     position: absolute;
-    top: 10px;
+    top: 50%;
+    /* Center vertically */
     right: 10px;
+    /* Keep it 10px away from the right edge */
+    transform: translateY(-50%);
+    /* Centering adjustment */
     display: none;
     /* Initially hidden */
     color: green;
     font-size: 24px;
     /* Adjust size as needed */
     z-index: 10;
-    /* To ensure it appears on top of other elements */
+    padding-left: 5px
 }
 
 /* Selected state styles */
@@ -148,6 +159,16 @@ body.signup-page {
 .selected {
     box-shadow: 0 0 20px 5px limegreen;
     /* Green glow around the card */
+}
+
+.top-right-text {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-family: "Inter-Bold", Helvetica;
+    font-weight: bold;
+    font-size: 16px;
+    /* Adjust as needed */
 }
 
 .top-left-text {
@@ -225,4 +246,61 @@ body.signup-page {
 
 .ghost-amount.show {
     opacity: 1;
+}
+
+.blank-card-left-nogrant {
+    position: relative;
+    flex-grow: 1;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 8px 8px 30px #00000040;
+}
+
+.blank-card-right-nogrant {
+    width: 80%;
+    height: 222px;
+    position: relative;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 8px 8px 30px #00000040;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.blank-card-left-nogrant,
+.blank-card-right-nogrant {
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    /* other shared styles */
+}
+
+.blank-card-left-nogrant:hover,
+.blank-card-right-nogrant:hover {
+    transform: scale(1.03);
+}
+
+.selected-nogrant .tick-mark {
+    display: block;
+}
+
+.selected-nogrant {
+    box-shadow: 0 0 20px 5px yellow;
+}
+
+.footer-summary {
+    position: absolute;
+    width: 100%;
+    text-align: left;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: 70%;
+}
+
+.footer-summary span {
+    white-space: nowrap;
+    text-align: left;
+    /* Prevent the text from breaking into multiple lines */
 }

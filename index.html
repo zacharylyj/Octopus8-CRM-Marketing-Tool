@@ -1,112 +1,127 @@
-<!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRM</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CRM</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
 
-<body class="signup-page">
-    <header class="header">
-        <div class="header-image">
-            <img src="https://www.octopus8.com/wp-content/uploads/2023/08/Asset-5@300x.png" alt=""">
-        </div>
-    </header>
+    <body class="signup-page">
+        <header class="header">
+            <div class="header-image">
+                <img src="https://www.octopus8.com/wp-content/uploads/2023/08/Asset-5@300x.png" alt=""">
+            </div>
+        </header>
 
-    <main class="cardsdiv">
-        <div class="left">
-            <div class="blank-card-left selected" data-card-id="left1" data-amount="35000">
-                <div class="top-left-text">Customer Relationship Management</div>
-                <div class="center-image">
-                    <img src="path/to/image.jpg" alt="Center Image">
+        <main class="cardsdiv">
+            <div class="left">
+                <div class="blank-card-left-large selected" data-card-id="left1" data-amount="35000" grant-amount="30000">
+                    <div class="top-left-text">Customer Management System + License Key</div>
+                    <div class="top-right-text">Grant Coverage: $30000 / 80%</div>    
+                    <div class="center-image">
+                        <img src="path/to/image.jpg" alt="Center Image">
+                    </div>
+                    <div class="bottom-right-text">$35000</div>
+                    <div class="tick-mark">✔</div>
                 </div>
-                <div class="bottom-right-text">$35000</div>
-            </div>
-            <div class="blank-card-left selected" data-card-id="left1" data-amount="2500">
-                <div class="top-left-text">License Key</div>
-                <div class="center-image">
-                    <img src="path/to/image.jpg" alt="Center Image">
+                <div class="blank-card-left selected" data-card-id="left3" data-amount="6720" grant-amount="3360">
+                    <div class="top-left-text">Option Key</div>
+                    <div class="top-right-text">Grant Coverage: 50%</div>
+                    <div class="center-image">
+                        <img src="path/to/image.jpg" alt="Center Image">
+                    </div>
+                    <div class="bottom-right-text">$6720</div>
+                    <div class="tick-mark">✔</div>
                 </div>
-                <div class="bottom-right-text">̶$̶3̶3̶6̶0̶ $2500</div>
-            </div>
-            <div class="blank-card-left selected" data-card-id="left1" data-amount="3360">
-                <div class="top-left-text">Option Key</div>
-                <div class="center-image">
-                    <img src="path/to/image.jpg" alt="Center Image">
-                </div>
-                <div class="bottom-right-text">$̶6̶7̶2̶0̶ $3360</div>
-            </div>
-        </div>
-        
-        <div class="right">
-            <div class="blank-card-right" data-card-id="right1" data-amount="10">
-                <div class="top-left-text">Add User Account</div>
-                <div class="center-image">
-                    <img src="path/to/image.jpg" alt="Center Image">
-                </div>
-                <div class="bottom-right-text">$10</div>
-                <div class="quantity-control">
-                    <span class="decrease">-</span>
-                    <span class="quantity">1</span>
-                    <span class="increase">+</span>
-                </div>
-            </div>
-            <div class="blank-card-right" data-card-id="right1" data-amount="8000">
-                <div class="top-left-text">Zoho Analytics(Base)</div>
-                <div class="center-image">
-                    <img src="path/to/image.jpg" alt="Center Image">
-                </div>
-                <div class="bottom-right-text">$8000</div>
-            </div>
-            <div class="blank-card-right" data-card-id="right1" data-amount="480">
-                <div class="top-left-text">Zoho Analytics(Add Graph)</div>
-                <div class="center-image">
-                    <img src="path/to/image.jpg" alt="Center Image">
-                </div>
-                <div class="bottom-right-text">$480</div>
-                <div class="quantity-control">
-                    <span class="decrease">-</span>
-                    <span class="quantity">1</span>
-                    <span class="increase">+</span>
-                </div>
-            </div>
-            <div class="blank-card-right" data-card-id="right1" data-amount="1000">
-                <div class="top-left-text">Zoho Analytics(Base)</div>
-                <div class="center-image">
-                    <img src="path/to/image.jpg" alt="Center Image">
-                </div>
-                <div class="bottom-right-text">Bottom Right Text</div>
-            </div>
-            <div class="blank-card-right" data-card-id="right1" data-amount="1000">
-                <div class="top-left-text">Top Left Text</div>
-                <div class="center-image">
-                    <img src="path/to/image.jpg" alt="Center Image">
-                </div>
-                <div class="bottom-right-text">Bottom Right Text</div>
-            </div>
-            <div class="blank-card-right" data-card-id="right1" data-amount="1000">
-                <div class="top-left-text">Top Left Text</div>
-                <div class="center-image">
-                    <img src="path/to/image.jpg" alt="Center Image">
-                </div>
-                <div class="bottom-right-text">Bottom Right Text</div>
             </div>
             
-        </div>
+            <div class="right">
+                <div class="blank-card-right-nogrant" data-card-id="right1" data-amount="10">
+                    <div class="top-left-text">Add User Account</div>
+                    <div class="center-image">
+                        <img src="path/to/image.jpg" alt="Center Image">
+                    </div>
+                    <div class="bottom-right-text">$10</div>
+                    <div class="quantity-control">
+                        <span class="decrease">-</span>
+                        <span class="quantity">1</span>
+                        <span class="increase">+</span>
+                    </div>
+                    <div class="tick-mark">✔</div>
+                </div>
+                <div class="blank-card-right" data-card-id="right2" data-amount="0" grant-amount="8000">
+                    <div class="top-left-text">Zoho Analytics(Base)</div>
+                    <div class="top-right-text">Your Text Here</div>
+                    <div class="center-image">
+                        <img src="path/to/image.jpg" alt="Center Image">
+                    </div>
+                    <div class="bottom-right-text">$????</div>
+                    <div class="tick-mark">✔</div>
+                </div>
+                <div class="blank-card-right" data-card-id="right3" data-amount="480">
+                    <div class="top-left-text">Zoho Analytics(Add Graph)</div>
+                    <div class="top-right-text">Your Text Here</div>
+                    <div class="center-image">
+                        <img src="path/to/image.jpg" alt="Center Image">
+                    </div>
+                    <div class="bottom-right-text">$480</div>
+                    <div class="quantity-control">
+                        <span class="decrease">-</span>
+                        <span class="quantity">1</span>
+                        <span class="increase">+</span>
+                    </div>
+                    <div class="tick-mark">✔</div>
+                </div>
+                <div class="blank-card-right" data-card-id="right4" data-amount="1000">
+                    <div class="top-left-text">Zoho Analytics(Base)</div>
+                    <div class="top-right-text">Your Text Here</div>
+                    <div class="center-image">
+                        <img src="path/to/image.jpg" alt="Center Image">
+                    </div>
+                    <div class="bottom-right-text">Bottom Right Text</div>
+                    <div class="tick-mark">✔</div>
+                </div>
+                <div class="blank-card-right" data-card-id="right5" data-amount="1000">
+                    <div class="top-left-text">Top Left Text</div>
+                    <div class="top-right-text">Your Text Here</div>
+                    <div class="center-image">
+                        <img src="path/to/image.jpg" alt="Center Image">
+                    </div>
+                    <div class="bottom-right-text">Bottom Right Text</div>
+                    <div class="tick-mark">✔</div>
+                </div>
+                <div class="blank-card-right" data-card-id="right6" data-amount="1000">
+                    <div class="top-left-text">Top Left Text</div>
+                    <div class="top-right-text">Your Text Here</div>
+                    <div class="center-image">
+                        <img src="path/to/image.jpg" alt="Center Image">
+                    </div>
+                    <div class="bottom-right-text">Bottom Right Text</div>
+                    <div class="tick-mark">✔</div>
+                </div>
+                
+            </div>
 
-    </main>
+        </main>
 
-    <footer class="footer">
-        <div class="footer-text">
-            <span id="selectedCount">0</span> Selected | Total: $<span id="totalAmount">0</span>
-        </div>
-        <div class="ghost-amount" id="ghostAmount"></div>
-    </footer>
+        <footer class="footer">
+            <div class="footer-summary">
+                <span>Grant Coverage: $<span id="totalGrantAmount">0</span></span>
+                <span>Total Amount: $<span id="totalDataAmount">0</span></span>
+            </div>
+            <div class="footer-text">
+                <span id="selectedCount">0</span> Selected | $<span id="totalAmount">0</span>/m for <span
+                    id="monthsDivided"></span> Months
+            </div>
+            <div class="ghost-amount" id="ghostAmount"></div>
+        </footer>
 
 
-    <script src="script.js"></script>
-</body>
 
-</html>
+
+        <script src="script.js"></script>
+    </body>
+
+    </html>
