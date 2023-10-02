@@ -9,7 +9,7 @@ const config = {
   },
   "Zoho Analytics(Base)": {
     "grant-amount": 8000,
-    "grant-text": "$8000",
+    "grant-text": "Grant Coverage: $8000",
     "image-link": "",
     "price-amount": 0,
     "price-amount-text": "",
@@ -19,13 +19,13 @@ const config = {
     "grant-amount": 0,
     "grant-text": "",
     "image-link": "",
-    "price-amount": 10,
-    "price-amount-text": "",
+    "price-amount": 480,
+    "price-amount-text": "$480",
     "quantity-display": "True",
   },
   "Don API": {
     "grant-amount": 11000,
-    "grant-text": "$11000",
+    "grant-text": "Grant Coverage: $11000",
     "image-link": "",
     "price-amount": 10,
     "price-amount-text": "",
@@ -33,7 +33,7 @@ const config = {
   },
   "SingPass(Login)": {
     "grant-amount": 7000,
-    "grant-text": "$7000",
+    "grant-text": "Grant Coverage: $7000",
     "image-link": "",
     "price-amount": 10,
     "price-amount-text": "",
@@ -41,7 +41,7 @@ const config = {
   },
   "SingPass(my info)": {
     "grant-amount": 7000,
-    "grant-text": "$7000",
+    "grant-text": "Grant Coverage: $7000",
     "image-link": "",
     "price-amount": 10,
     "price-amount-text": "",
@@ -49,7 +49,7 @@ const config = {
   },
   NinjaForm: {
     "grant-amount": 8000,
-    "grant-text": "$8000",
+    "grant-text": "Grant Coverage: $8000",
     "image-link": "",
     "price-amount": 10,
     "price-amount-text": "",
@@ -64,7 +64,16 @@ const config = {
     "quantity-display": "False",
   },
 };
-
+//////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////
 window.addEventListener("DOMContentLoaded", function () {
   const container = document.querySelector(".right");
