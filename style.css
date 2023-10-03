@@ -65,6 +65,7 @@ body.signup-page {
     width: 60%;
     height: calc(100vh - 10% - 3.5%); /* Adjust this value based on the height of your header and any additional spacing you require */
     align-items: center;
+    justify-content: center;
     gap: 20px;
     padding-left: 50px;
     padding: 20px 0px;
@@ -75,7 +76,7 @@ body.signup-page {
 .blank-card-left-large {
     position: relative;
     flex-grow: 2;
-    width: 100%;
+    width: 97%;
     background-color: #ffffff;
     border-radius: 15px;
     box-shadow: 8px 8px 30px #00000040;
@@ -83,7 +84,7 @@ body.signup-page {
 .blank-card-left {
     position: relative;
     flex-grow: 1;
-    width: 100%;
+    width: 97%;
     background-color: #ffffff;
     border-radius: 15px;
     box-shadow: 8px 8px 30px #00000040;
@@ -205,12 +206,14 @@ body.signup-page {
 }
 
 .blank-card-left,
+.blank-card-left-large,
 .blank-card-right {
     cursor: pointer;
     transition: transform 0.2s ease-in-out;
 }
 
 .blank-card-left:hover,
+.blank-card-left-large:hover,
 .blank-card-right:hover {
     transform: scale(1.03);
 }
@@ -272,7 +275,6 @@ body.signup-page {
 .blank-card-right-nogrant {
     cursor: pointer;
     transition: transform 0.2s ease-in-out;
-    /* other shared styles */
 }
 
 .blank-card-left-nogrant:hover,
@@ -303,5 +305,15 @@ body.signup-page {
 .footer-summary span {
     white-space: nowrap;
     text-align: left;
-    /* Prevent the text from breaking into multiple lines */
+}
+
+.price-input {
+    width: 50px;
+    border: 1px solid #ccc;
+    text-align: right;
+    padding: 5px;
+    font-size: 1rem;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
 }

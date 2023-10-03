@@ -9,9 +9,9 @@ const config = {
   },
   "Zoho Analytics(Base)": {
     "grant-amount": 8000,
-    "grant-text": "Grant Coverage: $8000",
+    "grant-text": "Grant Avaliable: $8000",
     "image-link": "",
-    "price-amount": 0,
+    "price-amount": "tb",
     "price-amount-text": "",
     "quantity-display": "False",
   },
@@ -25,33 +25,33 @@ const config = {
   },
   "Don API": {
     "grant-amount": 11000,
-    "grant-text": "Grant Coverage: $11000",
+    "grant-text": "Grant Avaliable: $11000",
     "image-link": "",
-    "price-amount": 10,
+    "price-amount": "tb",
     "price-amount-text": "",
     "quantity-display": "False",
   },
   "SingPass(Login)": {
     "grant-amount": 7000,
-    "grant-text": "Grant Coverage: $7000",
+    "grant-text": "Grant Avaliable: $7000",
     "image-link": "",
-    "price-amount": 10,
+    "price-amount": "tb",
     "price-amount-text": "",
     "quantity-display": "False",
   },
   "SingPass(my info)": {
     "grant-amount": 7000,
-    "grant-text": "Grant Coverage: $7000",
+    "grant-text": "Grant Avaliable: $7000",
     "image-link": "",
-    "price-amount": 10,
+    "price-amount": "tb",
     "price-amount-text": "",
     "quantity-display": "False",
   },
   NinjaForm: {
     "grant-amount": 8000,
-    "grant-text": "Grant Coverage: $8000",
+    "grant-text": "Grant Avaliable: $8000",
     "image-link": "",
-    "price-amount": 10,
+    "price-amount": "tb",
     "price-amount-text": "",
     "quantity-display": "False",
   },
@@ -63,7 +63,18 @@ const config = {
     "price-amount-text": "$4800",
     "quantity-display": "False",
   },
+  "New Product": {
+    //name of the product
+    "grant-amount": 0, //backend value
+    "grant-text": "Grant: 10", //displayed grant
+    "image-link": "", //image background
+    "price-amount": "tb", //tb will give text box option if not put a value without ""
+    "price-amount-text": "", //displayed amount text
+    "quantity-display": "False", //multiper products like (add user)
+  },
 };
+
+const months_divided = 36;
 //////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////
@@ -125,8 +136,29 @@ window.addEventListener("DOMContentLoaded", function () {
     // Add bottom-right-text
     const bottomRightText = document.createElement("div");
     bottomRightText.classList.add("bottom-right-text");
-    bottomRightText.textContent = cardData["price-amount-text"];
-    card.appendChild(bottomRightText);
+    if (cardData["price-amount"] == "tb") {
+      const inputField = document.createElement("input");
+      card.setAttribute("data-amount", 0);
+      inputField.setAttribute("type", "number");
+      inputField.setAttribute("inputmode", "numeric");
+      inputField.setAttribute("min", "0");
+      inputField.setAttribute("value", "0");
+      inputField.classList.add("price-input");
+      bottomRightText.appendChild(inputField);
+      card.appendChild(bottomRightText);
+      // Prevent toggle select when clicking on input field
+      inputField.addEventListener("click", function (e) {
+        e.stopPropagation();
+      });
+      // Attach event listener to update data-amount
+      inputField.addEventListener("input", function () {
+        card.setAttribute("data-amount", this.value);
+        updateFooter();
+      });
+    } else {
+      bottomRightText.textContent = cardData["price-amount-text"];
+      card.appendChild(bottomRightText);
+    }
 
     // Add quantity-control if quantity-display is "True"
     if (cardData["quantity-display"] === "True") {
@@ -150,13 +182,11 @@ window.addEventListener("DOMContentLoaded", function () {
 
       card.appendChild(quantityControl);
     }
-
     container.appendChild(card);
     cardIdCounter++;
   }
 
   let prevTotalAmount = 0;
-  const months_divided = 36;
 
   document.getElementById("monthsDivided").textContent = months_divided;
 
@@ -204,7 +234,6 @@ window.addEventListener("DOMContentLoaded", function () {
             tickMark.style.display = "none";
           }
         }
-
         const quantityControl = this.querySelector(".quantity-control");
         if (quantityControl) {
           if (
@@ -217,12 +246,12 @@ window.addEventListener("DOMContentLoaded", function () {
           }
         }
       }
-
       updateFooter();
     });
   });
 
   function updateFooter() {
+    console.log("Footer Updated!"); //debug
     let selectedCards = document.querySelectorAll(
       ".selected, .selected-nogrant"
     );
@@ -238,9 +267,17 @@ window.addEventListener("DOMContentLoaded", function () {
             10
           )
         : 1;
+
       totalAmount += parseFloat(card.getAttribute("data-amount")) * quantity;
-      totalGrantAmount +=
-        parseFloat(card.getAttribute("grant-amount") || 0) * quantity;
+
+      const cardGrantAmount = parseFloat(
+        card.getAttribute("grant-amount") || 0
+      );
+      console.log(card.getAttribute("data-amount"));
+      const cardPriceAmount = parseFloat(card.getAttribute("data-amount") || 0);
+      const amountToUse = Math.min(cardGrantAmount, cardPriceAmount);
+
+      totalGrantAmount += amountToUse * quantity;
     });
 
     // Calculate the change in total amount
